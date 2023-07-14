@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ai-art-generator/static/css/main.2dd21767.css",
-    "main.js": "/ai-art-generator/static/js/main.aacdb9e3.js",
+    "main.js": "/ai-art-generator/static/js/main.e89dbb47.js",
     "static/media/generatorBackground.webp": "/ai-art-generator/static/media/generatorBackground.88a601865a46d6d7a97e.webp",
     "index.html": "/ai-art-generator/index.html",
     "main.2dd21767.css.map": "/ai-art-generator/static/css/main.2dd21767.css.map",
-    "main.aacdb9e3.js.map": "/ai-art-generator/static/js/main.aacdb9e3.js.map"
+    "main.e89dbb47.js.map": "/ai-art-generator/static/js/main.e89dbb47.js.map"
   },
   "entrypoints": [
     "static/css/main.2dd21767.css",
-    "static/js/main.aacdb9e3.js"
+    "static/js/main.e89dbb47.js"
   ]
 }
