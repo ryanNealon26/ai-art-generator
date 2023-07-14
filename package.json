@@ -1,4 +1,5 @@
 {
+  "homepage": "https://ryanNealon26.github.io/ai-art-generator/",
   "name": "ai-art-generator",
   "version": "0.1.0",
   "private": true,
@@ -20,6 +21,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "devStart": "nodemon C:/Users/rwn93/ai-art-generator/src/server.js",
     "build": "react-scripts build",
@@ -49,5 +52,8 @@
   "keywords": [],
   "author": "",
   "proxy": "http://localhost:5000",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  }
 }

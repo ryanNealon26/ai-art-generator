@@ -3,12 +3,6 @@ import "./inputBox.css"
 import Button from 'react-bootstrap/Button';
 import LoadingWheel from "./loadingWheel";
 import { io } from "socket.io-client";
-import { api_key } from "./config";
-const { Configuration, OpenAIApi } = require("openai");
-const config = new Configuration({
-  apiKey: api_key,
-});
-const openai = new OpenAIApi(config);
 const socket = io.connect("http://localhost:5000")
 function InputBox(){
     const [placeHolderUrl, dalleUrl] = useState("");
@@ -18,42 +12,34 @@ function InputBox(){
     const generateArt = async () => {
       const inputPrompt = document.getElementById('inputBox').value;
       dalleLoading(true)
-      try{
-        const response = await openai.createImage({
-          prompt: inputPrompt,
-          n: 1,
-          size: "1024x1024",
-        });
-        var image_url = response.data.data[0].url;
-        dalleUrl(image_url);
-        prompt(inputPrompt)
-        dalleLoading(false)
-        socket.emit("imageData", [image_url, inputPrompt])
-      }catch(err){
-        dalleLoading(false)
-        window.alert('Unsucceful description or fill in a prompt')
-      }
+      socket.emit("createArt", inputPrompt);
+      socket.on("imageData", (data) => {
+        if (data == "no url"){
+          window.alert("Invalid description or enter a prompt")
+          dalleLoading(false);
+        }else{
+          dalleUrl(data);
+          prompt(inputPrompt)
+          dalleLoading(false);
+        }
+      })
     };
     const askChatGpt = () => {
       gptLoading(true);
-      openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        messages: [{role: 'user', content: "Create me a random description to create art, the description must be less than 240 characters including spacing"}]
-      }).then(res =>{
-        document.getElementById('inputBox').value = res.data.choices[0].message.content;
+      socket.emit("chatGPT")
+      socket.on("gptResponse", (data) => {
+        document.getElementById('inputBox').value = data;
         gptLoading(false)
       })
     }
     const regenerate = async () => {
+      var prompt = nullPrompt;
+      socket.emit("regenerateImage", prompt)
       dalleLoading(true)
-      const response = await openai.createImage({
-        prompt: nullPrompt,
-        n: 1,
-        size: "1024x1024",
-      });
-      var regenerated_url = response.data.data[0].url;
-      dalleUrl(regenerated_url);
-      dalleLoading(false);
+      socket.on("sendRegeneratedUrl", (data) =>{
+        dalleUrl(data);
+        dalleLoading(false);
+      })
     }
     const downloadImage = () => {
      var imagePdf = document.createElement('a');
