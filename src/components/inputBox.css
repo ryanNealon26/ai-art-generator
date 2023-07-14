@@ -1,0 +1,111 @@
+body {
+    overflow-y: hidden;
+}
+.h1Text {
+    font-family: "Times New Roman", Times, serif;
+    color: white;
+    justify-content: center; 
+    text-align: center; 
+    display: flex;
+}
+.h2Text{
+    font-style: italic;
+    color: white; 
+    justify-content: center; 
+    text-align: center;
+    display: flex;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-bottom: 5px;
+}
+.imageContainer{
+    justify-content: center;
+    align-items: center;
+    display: flex
+}
+.aiImage{
+    width: 35%;
+    border-radius: 5px;
+    align-items: center;
+    border: 2px solid white;
+}
+.inputContainer{
+    justify-content: center; 
+    align-items: center; 
+    display: flex; 
+    padding: 20px
+}
+.inputBox{
+    position: relative;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    width: 50%;
+    font-size:100%;
+    resize: none;
+    height: 200px;
+    font-family: "Times New Roman", Times, serif;
+    display: block
+}
+.buttonContainer{
+    justify-content: center; 
+    align-items: center; 
+    display: flex;
+    padding:15px;
+}
+.btn{
+    margin: 5px;
+}
+.gallerybtnContainer{
+    justify-content: center; 
+    align-items: center; 
+    display: flex;
+}
+.gallerybtn{
+  width: 25%;
+}
+@media screen and (max-width: 450px){
+  .h1Text {
+    margin-top: 12px;
+    font-family: "Times New Roman", Times, serif;
+    color: white;
+    justify-content: center; 
+    text-align: center; 
+    display: flex;
+    font-size: 250%; 
+    }
+  .h2Text{
+    color: white;
+    font-size: 150%; 
+    justify-content: center; 
+    text-align: center;
+    display: flex;
+    margin-right: 15px;
+    margin-left: 15px;
+    padding-bottom: 10px;
+    font-style: oblique;
+  }
+  .aiImage{
+    width: 80%;
+    border-radius: 5px;
+    align-items: center;
+    border: 2px solid white
+  }
+  .inputBox{
+    position: relative;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    width: 85%;
+    font-size:100%;
+    resize: none;
+    height: 240px;
+    font-family: "Times New Roman", Times, serif;
+    display: block
+  }
+  .gallerybtn{
+    width: 50%;
+  }   
+} 
