@@ -3,9 +3,10 @@ import "./inputBox.css"
 import Button from 'react-bootstrap/Button';
 import LoadingWheel from "./loadingWheel";
 import { io } from "socket.io-client";
+import { api_key } from "./config";
 const { Configuration, OpenAIApi } = require("openai");
 const config = new Configuration({
-  apiKey: "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",
+  apiKey: api_key,
 });
 const openai = new OpenAIApi(config);
 const socket = io.connect("http://localhost:5000")
@@ -14,7 +15,6 @@ function InputBox(){
     const[nullPrompt, prompt] = useState("");
     const [dalleStart, dalleLoading] = useState(false);
     const [gptStart, gptLoading] = useState(false);
-    const [galleryHide, galleryShow] = useState(false);
     const generateArt = async () => {
       const inputPrompt = document.getElementById('inputBox').value;
       dalleLoading(true)
