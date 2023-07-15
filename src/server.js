@@ -1,6 +1,5 @@
 const express = require('express');
 const apiKey = require("./config.js")
-const ImageData = require("./imageSchema")
 const app = express();
 const http = require("http");
 const {Server} = require("socket.io");
@@ -12,7 +11,6 @@ const config = new Configuration({
 });
 const openai = new OpenAIApi(config);
 app.use(cors());
-const imageSchema = require('./imageSchema');
 const io = new Server(server, {
   cors: {
     origin: "https://ai-create-art-2cb1b1626f9c.herokuapp.com/",
