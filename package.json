@@ -23,7 +23,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
+    "start": "react-scripts start --disableHostCheck=true",
     "devStart": "nodemon C:/Users/rwn93/ai-art-generator/src/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
