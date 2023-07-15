@@ -11,6 +11,9 @@ const config = new Configuration({
 });
 const openai = new OpenAIApi(config);
 app.use(cors());
+app.get("/", (req, res) => {
+  res.send("Welcome to the AI Create Art API"); // Replace this with your desired response
+});
 const io = new Server(server, {
   cors: {
     origin: "https://ai-create-art-2cb1b1626f9c.herokuapp.com/",
