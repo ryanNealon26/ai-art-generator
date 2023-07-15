@@ -21,9 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start --host https://ai-create-art-2cb1b1626f9c.herokuapp.com/",
+    "start": "react-scripts start --host https://ai-create-art-2cb1b1626f9c.herokuapp.com/ && node C:/Users/rwn93/ai-art-generator/src/server.js" ,
     "devStart": "nodemon C:/Users/rwn93/ai-art-generator/src/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
