@@ -1,5 +1,7 @@
 const express = require('express');
 const apiKey = require("./config.js")
+const mongoose = require('mongoose');
+const ImageData = require("./imageSchema")
 const app = express();
 const http = require("http");
 const {Server} = require("socket.io");
@@ -11,12 +13,23 @@ const config = new Configuration({
 });
 const openai = new OpenAIApi(config);
 app.use(cors());
-app.get("/", (req, res) => {
-  res.send("Welcome to the AI Create Art API"); // Replace this with your desired response
-});
+const imageSchema = require('./imageSchema');
+try{
+  mongoose.connect(
+    "mongodb://127.0.0.1:27017/ai-art-generator", 
+    {
+      useNewUrlParser: true,
+      keepAlive: true,
+      useUnifiedTopology: true
+    }
+  )
+  console.log("connection succussful")
+}catch{
+  console.log("failed to connect")
+}
 const io = new Server(server, {
   cors: {
-    origin: "https://ai-create-art-2cb1b1626f9c.herokuapp.com/",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"]
   },
 });
@@ -31,6 +44,7 @@ io.on("connection", (socket) => {
       var image_url = response.data.data[0].url;
       console.log(image_url);
       socket.emit("imageData", image_url)
+      const imageData = new ImageData({imageUrl: image_url, prompt: data})
       imageData.save()
       console.log("Successfully Saved")
     }catch(err){
@@ -59,6 +73,6 @@ io.on("connection", (socket) => {
   })
 });
 const PORT = process.env.PORT || 5000
-server.listen(PORT, () => {
+server.listen(5000, () => {
   console.log("Server is Running")
 })

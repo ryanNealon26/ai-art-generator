@@ -3,7 +3,7 @@ import "./inputBox.css"
 import Button from 'react-bootstrap/Button';
 import LoadingWheel from "./loadingWheel";
 import { io } from "socket.io-client";
-const socket = io.connect("https://ai-create-art-2cb1b1626f9c.herokuapp.com")
+const socket = io.connect("http://localhost:5000")
 function InputBox(){
     const [placeHolderUrl, dalleUrl] = useState("");
     const[nullPrompt, prompt] = useState("");
