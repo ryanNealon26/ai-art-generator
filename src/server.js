@@ -1,6 +1,5 @@
 const express = require('express');
 const apiKey = require("./config.js")
-const mongoose = require('mongoose');
 const ImageData = require("./imageSchema")
 const app = express();
 const http = require("http");
@@ -14,19 +13,6 @@ const config = new Configuration({
 const openai = new OpenAIApi(config);
 app.use(cors());
 const imageSchema = require('./imageSchema');
-try{
-  mongoose.connect(
-    "mongodb://127.0.0.1:27017/ai-art-generator", 
-    {
-      useNewUrlParser: true,
-      keepAlive: true,
-      useUnifiedTopology: true
-    }
-  )
-  console.log("connection succussful")
-}catch{
-  console.log("failed to connect")
-}
 const io = new Server(server, {
   cors: {
     origin: "https://ai-create-art-2cb1b1626f9c.herokuapp.com/",
@@ -44,7 +30,6 @@ io.on("connection", (socket) => {
       var image_url = response.data.data[0].url;
       console.log(image_url);
       socket.emit("imageData", image_url)
-      const imageData = new ImageData({imageUrl: image_url, prompt: data})
       imageData.save()
       console.log("Successfully Saved")
     }catch(err){
