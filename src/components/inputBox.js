@@ -3,7 +3,7 @@ import "./inputBox.css"
 import Button from 'react-bootstrap/Button';
 import LoadingWheel from "./loadingWheel";
 import { io } from "socket.io-client";
-const socket = io.connect("https://ai-create-art-2cb1b1626f9c.herokuapp.com/5000")
+const socket = io.connect("https://ai-create-art-2cb1b1626f9c.herokuapp.com:5000")
 function InputBox(){
     const [placeHolderUrl, dalleUrl] = useState("");
     const[nullPrompt, prompt] = useState("");
@@ -34,7 +34,7 @@ function InputBox(){
     }
     const regenerate = async () => {
       var prompt = nullPrompt;
-      socket.emit("regenerateImage", prompt)
+      socket.emit("regenerateImage", nullPrompt)
       dalleLoading(true)
       socket.on("sendRegeneratedUrl", (data) =>{
         dalleUrl(data);
