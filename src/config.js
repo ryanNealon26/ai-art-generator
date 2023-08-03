@@ -1,2 +1,2 @@
-const apiKey = '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';
+const apiKey = 'api key here';
 module.exports = apiKey;
